@@ -442,8 +442,6 @@ int sort_opt_display()
     cout << setw(5) << left << "8" << setw(25) << right << "RADIX SORT" << endl;
     cout<<"-----------------------------------\n";
     cout << setw(5) << left << "9" << setw(25) << right << "SHELL SORT" << endl;
-    cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "10" << setw(25) << right << "OddEven SORT" << endl;
     cout<<"\n\n\n";
 
 
@@ -802,169 +800,9 @@ void shellSort(vector<int>& arr, sf::RenderWindow& window)
 
             arr[j] = temp;
 
-                drawBars(window, arr,j,j-gap);
+                drawBars(window, arr,j,-1);
                 sf::sleep(sf::milliseconds(SPEED));  
 
-        }
-    }
-}
-
-
-
-
-void oddEvenSort(vector<int>& arr, sf::RenderWindow& window)
-{
-    int n = arr.size();
-    bool sorted = false;
-
-    while (!sorted)
-    {
-        sorted = true;
-
-        for (int i = 1; i <= n - 2; i += 2)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                swap(arr[i], arr[i + 1]);
-                sorted = false;
-
-                drawBars(window, arr,i, i+1);
-                sf::sleep(sf::milliseconds(SPEED));  
-            }
-        }
-
-        for (int i = 0; i <= n - 2; i += 2)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                swap(arr[i], arr[i + 1]);
-                sorted = false;
-
-                drawBars(window, arr,i,i+1);
-                sf::sleep(sf::milliseconds(SPEED));  
-            }
-        }
-    }
-}
-
-
-void bubbleSort2(vector<int> arr)
-{
-    int n=arr.size();
-    int i, j;
-    bool swapped;
-    for (i = 0; i < n - 1; i++)
-    {
-        swapped = false;
-        for (j = 0; j < n - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-                swapped = true;
-            }
-        }
-
-
-        if (swapped == false)
-            break;
-    }
-}
-
-
-void selectionSort2(vector<int> arr)
-{
-    int i, j, min_idx;
-    int n=arr.size();
-
-
-    for (i = 0; i < n - 1; i++)
-    {
-
-
-        min_idx = i;
-        for (j = i + 1; j < n; j++)
-        {
-            if (arr[j] < arr[min_idx])
-                min_idx = j;
-        }
-
-
-        if (min_idx != i)
-            swap(arr[min_idx], arr[i]);
-    }
-}
-
-
-void insertionSort2(vector<int> arr)
-{
-    int n=arr.size();
-    int i, key, j;
-    for (i = 1; i < n; i++)
-    {
-        key = arr[i];
-        j = i - 1;
-
-        while (j >= 0 && arr[j] > key)
-        {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
-    }
-}
-
-
-
-void shellSort2(vector<int>& arr)
-{
-    int n = arr.size();
-
-    for (int gap = n / 2; gap > 0; gap /= 2)
-    {
-        for (int i = gap; i < n; i++)
-        {
-            int temp = arr[i];
-            int j;
-
-            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
-            {
-                arr[j] = arr[j - gap];
-            }
-
-            arr[j] = temp;
-        }
-    }
-}
-
-
-
-
-void oddEvenSort2(vector<int>& arr)
-{
-    int n = arr.size();
-    bool sorted = false;
-
-    while (!sorted)
-    {
-        sorted = true;
-
-        for (int i = 1; i <= n - 2; i += 2)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                swap(arr[i], arr[i + 1]);
-                sorted = false;
-            }
-        }
-
-        for (int i = 0; i <= n - 2; i += 2)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                swap(arr[i], arr[i + 1]);
-                sorted = false;
-            }
         }
     }
 }
@@ -992,7 +830,7 @@ void main_menu()
             int sort_choice=sort_opt_display();
 
 
-            string choice_array[10];
+            string choice_array[9];
             choice_array[0]="BUBBLE SORT";
             choice_array[1]="SELECTION SORT";
             choice_array[2]="INSERTION SORT";
@@ -1002,7 +840,7 @@ void main_menu()
             choice_array[6]="COUNT SORT";
             choice_array[7]="RADIX SORT";
             choice_array[8]="SHELL SORT";
-            choice_array[9]="ODD_EVEN SORT";
+            
 
 
             int number_of_rd_ele;
@@ -1192,23 +1030,6 @@ void main_menu()
                     break;
                 }
 
-                case 10:
-                {
-                    oddEvenSort(array, window);
-
-                    sf::Event event;
-                    while (window.isOpen())
-                    {
-                        while (window.pollEvent(event))
-                        {
-                            if (event.type == sf::Event::Closed)
-                            {
-                               window.close();
-                            }
-                        }
-                    }
-                    break;
-                }
 
                 default:
                 {
