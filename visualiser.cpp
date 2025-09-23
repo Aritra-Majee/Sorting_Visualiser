@@ -72,196 +72,6 @@ void drawBars(sf::RenderWindow& window, const vector<int>& array,int x,int y)
 
 
 
-class sort_use
-{
-    public:
-    vector<string> parameter1;
-    vector<string> parameter2;
-    vector<string> parameter3;
-    string in;
-    int ch;
-    int lim;
-    string temp;
-    int set;
-
-
-    void input()
-    {
-        cout<<"\n\n";
-        cout<<"MAXIMUM OF THREE PARAMETERS ALLOWED FOR USER TO INPUT"<<endl;
-        cout<<"\n\nEnter number of parameters you want to enter"<<endl;
-        cin>>lim;
-        cout<<"\nEnter number of sets you want to enter"<<endl;
-        cin>>set;
-        if(lim==1)
-        {
-            int count;
-            for(int i=0;i<set;i++)
-            {
-                cout <<"Enter Set "<< i<<" value"<<endl;
-                cin>>temp;
-                parameter1.push_back(temp);
-            }
-        }
-        if(lim==2)
-        {
-            int count;
-            for(int i=0;i<set;i++)
-            {
-                count = 1;
-                cout <<"Enter Set "<< i+1 <<" value for parameter "<< count <<endl;
-                count++;
-                cin>>temp;
-                parameter1.push_back(temp);
-                cout <<"Enter Set "<< i+1 <<" value for parameter "<< count <<endl;
-                count++;
-                cin>>temp;
-                parameter2.push_back(temp);
-            }
-        }
-        if(lim==3)
-        {
-            int count;
-            for(int i=0;i<set;i++)
-            {
-                count = 1;
-                cout <<"Enter Set "<< i+1 <<" value for parameter "<< count <<endl;
-                count++;
-                cin>>temp;
-                parameter1.push_back(temp);
-                cout <<"Enter Set "<< i+1 <<" value for parameter "<< count <<endl;
-                count++;
-                cin>>temp;
-                parameter2.push_back(temp);
-                cout <<"Enter Set "<< i+1 <<" value for parameter "<< count <<endl;
-                count++;
-                cin>>temp;
-                parameter3.push_back(temp);
-            }
-        }
-
-    }
-
-
-
-    void Sort()
-    {
-        cout<<"Name the parameter you want to sort ?"<<endl;
-        cin>>ch;
-        if(ch==1)
-        {
-            int n=parameter1.size();
-            int i, j;
-            bool swapped;
-            for (i = 0; i < n - 1; i++)
-            {
-                swapped = false;
-                for (j = 0; j < n - i - 1; j++)
-                {
-                    if (parameter1[j] > parameter1[j + 1])
-                    {
-                        swap(parameter1[j], parameter1[j + 1]);
-                        swap(parameter2[j], parameter2[j + 1]);
-                        swapped = true;
-                    }
-                }
-
-             if (swapped == false)
-             break;
-            }
-        }
-        if(ch==2)
-        {
-            int n=parameter2.size();
-            int i, j;
-            bool swapped;
-            for (i = 0; i < n - 1; i++)
-            {
-                swapped = false;
-                for (j = 0; j < n - i - 1; j++)
-                {
-                    if (parameter2[j] > parameter2[j + 1])
-                    {
-                        swap(parameter1[j], parameter1[j + 1]);
-                        swap(parameter2[j], parameter2[j + 1]);
-                        swapped = true;
-                    }
-                }
-
-             if (swapped == false)
-             break;
-            }
-        }
-        if(ch==3)
-        {
-            int n=parameter3.size();
-            int i, j;
-            bool swapped;
-            for (i = 0; i < n - 1; i++)
-            {
-                swapped = false;
-                for (j = 0; j < n - i - 1; j++)
-                {
-                    if (parameter3[j] > parameter3[j + 1])
-                    {
-                        swap(parameter1[j], parameter1[j + 1]);
-                        swap(parameter2[j], parameter2[j + 1]);
-                        swap(parameter3[j], parameter3[j + 1]);
-                        swapped = true;
-                    }
-                }
-
-             if (swapped == false)
-             break;
-            }
-        }
-    }
-
-    void display()
-    {
-        if(lim==1)
-        {
-            cout<<"\n\n";
-            cout << setw(5) << left << "PARAMETER 1" << setw(15) << right << endl;
-            cout<<"-----------------------------------\n\n";
-            for(int i=0;i<set;i++)
-            {
-                cout << setw(5) << left << parameter1[i] << endl;
-            }
-            cout<<"\n\n";
-        }
-        if(lim==2)
-        {
-            cout<<"\n\n";
-            cout << setw(5) << left << "PARAMETER 1" << setw(15) << right << "PARAMETER 2" << endl;
-            cout<<"-----------------------------------\n\n";
-            for(int i=0;i<set;i++)
-            {
-                cout << setw(5) << left << parameter1[i] << setw(15) << right << parameter2[i] << endl;
-            }
-            cout<<"\n\n";
-        }
-        if(lim==3)
-        {
-            cout<<"\n\n";
-            cout << setw(5) << left << "PARAMETER 1" << setw(10) << right << "PARAMETER 2" << setw(15) << right << "PARAMETER 3" << endl;
-            cout<<"---------------------------------------------------\n\n";
-            for(int i=0;i<set;i++)
-            {
-                cout << setw(5) << left << parameter1[i] << setw(10) << right << parameter2[i] << setw(15) << right << parameter3[i] << endl;
-            }
-            cout<<"\n\n";
-            }
-        }
-
-
-
-
-
-
-};
-
-
 
 void intro_display()
 {
@@ -397,11 +207,10 @@ int mainmenu_display()
 
 
     cout<<"\n\n";
-    cout << setw(5) << left << "1" << setw(15) << right << "SORT" << endl;
+
+    cout << setw(5) << left << "1" << setw(15) << right << "VISUALIZE" << endl;
     cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "2" << setw(15) << right << "VISUALIZE" << endl;
-    cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "3" << setw(15) << right << "EXIT" << endl;
+    cout << setw(5) << left << "2" << setw(15) << right << "EXIT" << endl;
     cout<<"\n\n";
 
     cout<<"Enter Choice : ";
@@ -815,16 +624,8 @@ void main_menu()
         cout<<BOLD_CYAN;
         int usr_choice = mainmenu_display();
         cout<<RESET;
+
         if(usr_choice==1)
-        {
-            cout<<BOLD_BLUE;
-            sort_use obj;
-            obj.input();
-            obj.Sort();
-            obj.display();
-            break;
-        }
-        else if(usr_choice==2)
         {
             cout<<GREEN;
             int sort_choice=sort_opt_display();
@@ -1038,7 +839,7 @@ void main_menu()
             }
 
         }
-        else if(usr_choice==3)
+        else if(usr_choice==2)
         {
             return;
         }
