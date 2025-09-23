@@ -49,20 +49,16 @@ void drawBars(sf::RenderWindow& window, const vector<int>& array,int x,int y)
         sf::RectangleShape bar(sf::Vector2f(BAR_WIDTH, array[i]));
         bar.setPosition(i * BAR_WIDTH, WINDOW_HEIGHT - array[i]);
         if(i==x)
-            {
-
-        bar.setFillColor(sf::Color::Red);
-
+        {
+            bar.setFillColor(sf::Color::Red);
         }
         else if(i==y)
         {
-
-        bar.setFillColor(sf::Color::Blue);
-
+            bar.setFillColor(sf::Color::Blue);
         }
         else
         {
-        bar.setFillColor(sf::Color::Black);
+            bar.setFillColor(sf::Color::Black);
         }
         window.draw(bar);
     }
