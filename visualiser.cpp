@@ -245,8 +245,6 @@ int sort_opt_display()
     cout << setw(5) << left << "7" << setw(25) << right << "COUNT SORT" << endl;
     cout<<"-----------------------------------\n";
     cout << setw(5) << left << "8" << setw(25) << right << "RADIX SORT" << endl;
-    cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "9" << setw(25) << right << "SHELL SORT" << endl;
     cout<<"\n\n\n";
 
 
@@ -530,7 +528,7 @@ void countSort(vector<int>& arr, sf::RenderWindow& window)
             arr[index++] = i;
             count[i]--;
 
-            drawBars(window, arr,i+1,i-1);
+            drawBars(window, arr,index,-1);
             sf::sleep(sf::milliseconds(SPEED));  
 
         }
@@ -563,8 +561,8 @@ void countingSort(vector<int>& arr, int exp, sf::RenderWindow& window)
     {
         arr[i] = output[i];
 
-            drawBars(window, arr,i+1, i-1);
-            sf::sleep(sf::milliseconds(SPEED));  
+        drawBars(window, arr,i+1, i-1);
+        sf::sleep(sf::milliseconds(SPEED));  
 
     }
 }
@@ -576,39 +574,6 @@ void radixSort(vector<int>& arr, sf::RenderWindow& window)
     for (int exp = 1; max_element / exp > 0; exp *= 10)
     {
         countingSort(arr, exp, window);
-    }
-}
-
-
-
-
-void shellSort(vector<int>& arr, sf::RenderWindow& window)
-{
-    int n = arr.size();
-
-    for (int gap = n / 2; gap > 0; gap /= 2)
-    {
-        for (int i = gap; i < n; i++)
-        {
-            int temp = arr[i];
-            int j;
-
-            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
-            {
-                arr[j] = arr[j - gap];
-
-
-                drawBars(window, arr,j, j-gap);
-                sf::sleep(sf::milliseconds(SPEED));  
-
-            }
-
-            arr[j] = temp;
-
-                drawBars(window, arr,j,-1);
-                sf::sleep(sf::milliseconds(SPEED));  
-
-        }
     }
 }
 
@@ -636,7 +601,6 @@ void main_menu()
             choice_array[5]="HEAP SORT";
             choice_array[6]="COUNT SORT";
             choice_array[7]="RADIX SORT";
-            choice_array[8]="SHELL SORT";
             
 
 
@@ -794,24 +758,6 @@ void main_menu()
                 case 8:
                 {
                     radixSort(array, window);
-
-                    sf::Event event;
-                    while (window.isOpen())
-                    {
-                        while (window.pollEvent(event))
-                        {
-                            if (event.type == sf::Event::Closed)
-                            {
-                               window.close();
-                            }
-                        }
-                    }
-                    break;
-                }
-
-                case 9:
-                {
-                    shellSort(array, window);
 
                     sf::Event event;
                     while (window.isOpen())
