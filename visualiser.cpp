@@ -240,11 +240,9 @@ int sort_opt_display()
     cout<<"-----------------------------------\n";
     cout << setw(5) << left << "5" << setw(25) << right << "QUICK SORT" << endl;
     cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "6" << setw(25) << right << "HEAP SORT" << endl;
+    cout << setw(5) << left << "6" << setw(25) << right << "COUNT SORT" << endl;
     cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "7" << setw(25) << right << "COUNT SORT" << endl;
-    cout<<"-----------------------------------\n";
-    cout << setw(5) << left << "8" << setw(25) << right << "RADIX SORT" << endl;
+    cout << setw(5) << left << "7" << setw(25) << right << "RADIX SORT" << endl;
     cout<<"\n\n\n";
 
 
@@ -449,56 +447,6 @@ void quickSort(vector<int>& arr, int low, int high, sf::RenderWindow& window)
 }
 
 
-
-
-void maxHeapify(vector<int>& arr, int n, int i, sf::RenderWindow& window)
-{
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < n && arr[left] > arr[largest])
-        largest = left;
-
-    if (right < n && arr[right] > arr[largest])
-        largest = right;
-
-    if (largest != i)
-    {
-        swap(arr[i], arr[largest]);
-
-
-            drawBars(window, arr,i,largest );
-            sf::sleep(sf::milliseconds(SPEED));
-
-
-
-        maxHeapify(arr, n, largest, window);
-    }
-}
-
-void heapSort(vector<int>& arr, sf::RenderWindow& window)
-{
-    int n = arr.size();
-
-    for (int i = n / 2 - 1; i >= 0; i--)
-        maxHeapify(arr, n, i, window);
-
-    for (int i = n - 1; i > 0; i--)
-    {
-        swap(arr[0], arr[i]);
-
-
-            drawBars(window, arr,0,i);
-            sf::sleep(sf::milliseconds(SPEED)); 
-
-
-        maxHeapify(arr, i, 0, window);
-    }
-}
-
-
-
 int getMax(vector<int>& arr)
 {
     int max = arr[0];
@@ -598,9 +546,8 @@ void main_menu()
             choice_array[2]="INSERTION SORT";
             choice_array[3]="MERGE SORT";
             choice_array[4]="QUICK SORT";
-            choice_array[5]="HEAP SORT";
-            choice_array[6]="COUNT SORT";
-            choice_array[7]="RADIX SORT";
+            choice_array[5]="COUNT SORT";
+            choice_array[6]="RADIX SORT";
             
 
 
@@ -719,25 +666,9 @@ void main_menu()
                     break;
                 }
 
+                
+
                 case 6:
-                {
-                    heapSort(array, window);
-
-                    sf::Event event;
-                    while (window.isOpen())
-                    {
-                        while (window.pollEvent(event))
-                        {
-                            if (event.type == sf::Event::Closed)
-                            {
-                               window.close();
-                            }
-                        }
-                    }
-                    break;
-                }
-
-                case 7:
                 {
                     countSort(array, window);
 
@@ -755,7 +686,7 @@ void main_menu()
                     break;
                 }
 
-                case 8:
+                case 7:
                 {
                     radixSort(array, window);
 
