@@ -363,14 +363,14 @@ void merge(vector<int>& array, int left, int mid, int right, sf::RenderWindow& w
         {
             array[k] = L[i];
             ++i;
-            drawBars(window, array,i,j);
+            drawBars(window, array,-1,-1);
             sf::sleep(sf::milliseconds(SPEED)); 
         }
         else
         {
             array[k] = R[j];
             ++j;
-            drawBars(window, array,k,j);
+            drawBars(window, array,-1,-1);
             sf::sleep(sf::milliseconds(SPEED));  
         }
         ++k;
